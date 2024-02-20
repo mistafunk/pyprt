@@ -25,15 +25,6 @@ RUN tar xf python_src.tar.xz \
     && popd \
     && rm -rf /tmp/Python-${PY_VER}${PY_VER_MICRO}
 
-## this container works with mounted host directories
-## we create a user with matching uid/gid to avoid permissions issues
-## inspired by https://vsupalov.com/docker-shared-permissions/
-ARG USER_ID
-ARG GROUP_ID
-RUN groupadd --gid $GROUP_ID user
-RUN useradd --uid $USER_ID --gid $GROUP_ID user
-USER user
-
 ## also see https://github.com/sclorg/devtoolset-container
 RUN echo "unset BASH_ENV PROMPT_COMMAND ENV && source scl_source enable devtoolset-9" >> /tmp/scl_enable
 ENV BASH_ENV=/tmp/scl_enable ENV=/tmp/scl_enable PROMPT_COMMAND=". /tmp/scl_enable"
