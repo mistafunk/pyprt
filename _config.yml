@@ -4,3 +4,4 @@ repository: esri/pyprt
 show_downloads: false
 include:
   - _static
+  - _modules
